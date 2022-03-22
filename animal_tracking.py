@@ -1,6 +1,7 @@
 from keras.models import load_model
 import numpy as np
 import cv2
+from helper import getPredictionResult
 
 model = load_model('keras_model.h5')
 
@@ -19,10 +20,10 @@ while(True):
 
             data[0] = normalized_image_array
 
-            
             prediction = model.predict(data)
-            print(prediction)
-            
+            predictionArray =list(prediction[0])
+            predictionResult = getPredictionResult(predictionArray)
+            print(predictionResult)
             
             if cv2.waitKey(700) & 0xFF == ord('q'):
                 break

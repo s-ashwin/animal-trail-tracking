@@ -1,1 +1,3 @@
 *.h5
+labels.txt
+__pycache__/

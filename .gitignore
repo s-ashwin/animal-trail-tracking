@@ -1,3 +1,4 @@
 *.h5
 labels.txt
+credentials.py
 __pycache__/

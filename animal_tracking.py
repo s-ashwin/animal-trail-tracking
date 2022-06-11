@@ -2,6 +2,8 @@ from keras.models import load_model
 import numpy as np
 import cv2, mysql.connector
 from helper import getPredictionResult
+from credentials import host, database, user, password
+import sys
 
 model = load_model('keras_model.h5')
 
@@ -13,15 +15,16 @@ insertStatement = "INSERT INTO classification_data (id,image,prediction_result,l
 
 try:
     mydb = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="AnimalTrailTracking",
+            host=host,
+            user=user,
+            password=password,
+            database=database,
         )
     mycursor = mydb.cursor()
     print("CONNECTED")
 except Exception as e: 
     print("Connection - Failed ", e)
+    sys.exit(1)
 
 def insertData(image,prediction_result):
     try:
